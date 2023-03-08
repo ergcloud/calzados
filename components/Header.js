@@ -13,7 +13,7 @@ import {
 
 import Link from 'next/link'
 
-const Header = () => {
+function Header () {
   const products = [
     'borcegos',
     'botas',
@@ -67,11 +67,11 @@ const Header = () => {
           </Flex>
           {
             isTabletWidth &&
-            <HStack
-              spacing={5}
-              divider={<StackDivider borderColor='brand.200' />}
-            >
-              {
+              <HStack
+                spacing={5}
+                divider={<StackDivider borderColor='brand.200' />}
+              >
+                {
                 products.map(producto =>
                   <Link
                     key={producto}
@@ -91,7 +91,7 @@ const Header = () => {
                   </Link>
                 )
               }
-            </HStack>
+              </HStack>
           }
         </Box>
         <CartDrawer />

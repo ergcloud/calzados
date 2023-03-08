@@ -21,10 +21,10 @@ import Link from 'next/link'
 import { GrMenu } from 'react-icons/gr'
 import { AiFillHome } from 'react-icons/ai'
 
-const MenuDrawer = ({ products }) => {
+function MenuDrawer ({ products }) {
+  const btnRef = useRef()
   const [biggerThan500px] = useMediaQuery('(min-width: 500px)')
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = useRef()
 
   return (
     <>
@@ -39,7 +39,8 @@ const MenuDrawer = ({ products }) => {
           h={6}
           mr={3}
           mt={`${biggerThan500px ? 0.5 : 0}`}
-          color='brand.400' />
+          color='brand.400'
+        />
       </Flex>
       <Drawer
         isOpen={isOpen}

@@ -2,7 +2,7 @@ import { Flex, Icon, Image, Box, Text } from '@chakra-ui/react'
 import { BiTrash } from 'react-icons/bi'
 import { parseCurrency } from '../utilities/parseCurrency'
 
-const ItemCarrito = ({ product, removeProduct }) => {
+function CartItem ({ product, removeProduct }) {
   return (
     <Flex gap={4} justifyContent='space-between' alignItems='center'>
       <Flex gap={3} alignItems='center'>
@@ -56,4 +56,4 @@ const ItemCarrito = ({ product, removeProduct }) => {
   )
 }
 
-export default ItemCarrito
+export default CartItem

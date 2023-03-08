@@ -30,12 +30,6 @@ export const CartProvider = ({ children }) => {
 
         return newProducts
       })
-
-      // if (product.amount > 1) {
-      //   setProductsInCart([...productsInCart, { ...product, price: product.price * product.amount }])
-      // } else {
-      //   setProductsInCart([...productsInCart, product])
-      // }
     }
   }
 

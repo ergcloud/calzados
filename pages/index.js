@@ -14,8 +14,8 @@ import 'swiper/css/lazy'
 // import '../swiper-styles/styles.css'
 
 import PageLayout from '../components/PageLayout'
-import CardProductoDestacado from '../components/CardProductoDestacado'
-import CardProductoCatalago from '../components/CardProductoCatalogo'
+import FeaturedProductCard from '../components/FeaturedProductCard'
+import CataloguedProductCard from '../components/CataloguedProductCard'
 import InfoCard from '../components/InfoCard'
 
 import { BsCreditCard2Front, BsChevronDown, BsChevronUp } from 'react-icons/bs'
@@ -88,7 +88,8 @@ export default function Home ({ products }) {
         </Text>
         {
           !isTabletWidth
-            ? <Swiper
+            ? (
+              <Swiper
                 modules={[Pagination, Autoplay, Lazy]}
                 spaceBetween={10}
                 slidesPerView={3}
@@ -99,40 +100,43 @@ export default function Home ({ products }) {
                 lazy={{ loadPrevNextAmount: 3 }}
                 pagination={{ clickable: true }}
               >
-              {
+                {
                 products.slice(0, 9).map(product => (
                   <SwiperSlide key={product.name}>
-                    <CardProductoDestacado {...product} />
+                    <FeaturedProductCard {...product} />
                   </SwiperSlide>
                 ))
               }
-            </Swiper>
-            : <>
-              <Grid
-                templateColumns='repeat(3, 220px)'
-                gap={5}
-                justifyContent='center'
-                alignItems='center'
-              >
-                {
+              </Swiper>
+              )
+            : (
+              <>
+                <Grid
+                  templateColumns='repeat(3, 220px)'
+                  gap={5}
+                  justifyContent='center'
+                  alignItems='center'
+                >
+                  {
                   products
                     .slice(0, isActive ? 9 : 3)
                     .map(product => (
                       <GridItem key={product.name} h='auto'>
-                        <CardProductoDestacado {...product} />
+                        <FeaturedProductCard {...product} />
                       </GridItem>
                     ))
                 }
-              </Grid>
-              <Icon
-                as={isActive ? BsChevronUp : BsChevronDown}
-                onClick={toggleProductsToShow}
-                w={10}
-                h={10}
-                color='brand.300'
-                cursor='pointer'
-              />
-            </>
+                </Grid>
+                <Icon
+                  as={isActive ? BsChevronUp : BsChevronDown}
+                  onClick={toggleProductsToShow}
+                  w={10}
+                  h={10}
+                  color='brand.300'
+                  cursor='pointer'
+                />
+              </>
+              )
         }
       </Box>
       <Box align='center'>
@@ -157,7 +161,7 @@ export default function Home ({ products }) {
         >
           {
             productosCatalogo.map(({ name, description, imageUrl }) => (
-              <CardProductoCatalago
+              <CataloguedProductCard
                 key={name}
                 name={name}
                 description={description}
@@ -170,28 +174,32 @@ export default function Home ({ products }) {
       <Box my={8}>
         {
           isDesktopWidth
-            ? <Flex justifyContent='center' gap={10}>
-              {
+            ? (
+              <Flex justifyContent='center' gap={10}>
+                {
                 info.map(({ icon, title, description }) => (
                   <InfoCard key={title} icon={icon} title={title} description={description} />
                 ))
               }
               </Flex>
-            : <Swiper
+              )
+            : (
+              <Swiper
                 modules={[Navigation]}
                 slidesPerView={1}
                 speed={500}
                 loop
                 navigation
               >
-              {
+                {
                 info.map(({ icon, title, description }) => (
                   <SwiperSlide key={title}>
                     <InfoCard icon={icon} title={title} description={description} />
                   </SwiperSlide>
                 ))
               }
-            </Swiper>
+              </Swiper>
+              )
         }
       </Box>
     </PageLayout>

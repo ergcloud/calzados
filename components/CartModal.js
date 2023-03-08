@@ -20,7 +20,7 @@ import {
 import { ImCross } from 'react-icons/im'
 import { BsChevronDown } from 'react-icons/bs'
 
-const CartModal = ({ product, isOpen, onClose }) => {
+function CartModal ({ product, isOpen, onClose }) {
   const {
     name,
     category,

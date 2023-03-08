@@ -2,7 +2,7 @@ import React from 'react'
 import { Flex, Text, Image } from '@chakra-ui/react'
 import Link from 'next/link'
 
-export default function CardProductoCatalago({ name, description, imageUrl }) {
+function CataloguedProductCard ({ name, description, imageUrl }) {
   return (
     <Flex direction='column' w='260px'>
       <Link href={`/producto/${name.toLowerCase()}`}>
@@ -36,3 +36,5 @@ export default function CardProductoCatalago({ name, description, imageUrl }) {
     </Flex>
   )
 }
+
+export default CataloguedProductCard

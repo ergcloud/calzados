@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useCartContext } from '../context/CartContext'
 
-import ItemCarrito from './ItemCarrito'
+import CartItem from './CartItem'
 import { parseCurrency } from '../utilities/parseCurrency'
 
 import {
@@ -20,7 +20,7 @@ import {
 
 import { BiShoppingBag } from 'react-icons/bi'
 
-const CartDrawer = () => {
+function CartDrawer () {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
 
@@ -32,10 +32,11 @@ const CartDrawer = () => {
 
   const totalPrice = productsInCart?.reduce((total, cartItem) => total + (cartItem.price * cartItem.amount), 0)
 
-  const whatsappMessage = 
-    productsInCart?
-      .reduce((message, product) => message.concat(`* ${product.name} talle ${product.size} x${product.amount} - ${parseCurrency(product.price)}\n`), '')
-      .concat(`\nTotal: ${parseCurrency(totalPrice)}`)
+  const whatsappMessage = productsInCart?.reduce((message, product) => {
+    const formattedMessage = `* ${product.name} talle ${product.size} x${product.amount} - ${parseCurrency(product.price)}\n`
+    return message.concat(formattedMessage)
+  }, '')
+    .concat(`\nTotal: ${parseCurrency(totalPrice)}`)
 
   return (
     <>
@@ -77,7 +78,11 @@ const CartDrawer = () => {
               {
                 totalAmountInCart > 0
                   ? productsInCart.map(product => (
-                    <ItemCarrito key={product.name} product={product} removeProduct={removeProductFromCart} />
+                    <CartItem
+                      key={product.name}
+                      product={product}
+                      removeProduct={removeProductFromCart}
+                    />
                   ))
                   : <Text textAlign='center'>No tienes ningún producto en el carrito</Text>
               }

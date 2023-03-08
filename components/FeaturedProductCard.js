@@ -1,14 +1,22 @@
 import { useState } from 'react'
-import { Flex, Button, Image, Text, useMediaQuery, useDisclosure } from '@chakra-ui/react'
+import {
+  Flex,
+  Button,
+  Image,
+  Text,
+  useDisclosure
+} from '@chakra-ui/react'
+
 import { parseCurrency } from '../utilities/parseCurrency'
 import CartModal from './CartModal'
 
-export default function CardProductoDestacado (product) {
+function FeaturedProductCard
+(product) {
   const { name, category, price, imageUrl } = product
 
   const [productToShow, setProductToShow] = useState(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [biggerThan500px] = useMediaQuery('(min-width: 500px)')
+  // const [biggerThan500px] = useMediaQuery('(min-width: 500px)')
 
   const handleClick = () => {
     setProductToShow(product)
@@ -64,3 +72,5 @@ export default function CardProductoDestacado (product) {
     </>
   )
 }
+
+export default FeaturedProductCard

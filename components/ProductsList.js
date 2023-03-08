@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import CartModal from './CartModal'
 import { parseCurrency } from '../utilities/parseCurrency'
+import CartModal from './CartModal'
 
 import {
   Box,
@@ -12,9 +12,9 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 
-export default function ProductsList ({ products }) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+function ProductsList ({ products }) {
   const [productToShow, setProductToShow] = useState(null)
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleClick = product => {
     setProductToShow(product)
@@ -86,3 +86,5 @@ export default function ProductsList ({ products }) {
     </>
   )
 }
+
+export default ProductsList

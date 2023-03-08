@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from './Header'
 import Footer from './Footer'
 
-export default function PageLayout ({ children, title = 'Picota Calzados' }) {
+function PageLayout ({ children, title = 'Picota Calzados' }) {
   return (
     <>
       <Head>
@@ -18,3 +18,5 @@ export default function PageLayout ({ children, title = 'Picota Calzados' }) {
     </>
   )
 }
+
+export default PageLayout

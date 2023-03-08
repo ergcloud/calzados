@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import axios from "axios"
-import Papa from "papaparse"
+import axios from 'axios'
+import Papa from 'papaparse'
 
 import {
   Flex,
@@ -18,11 +18,11 @@ import PageLayout from '../../components/PageLayout'
 import ProductsList from '../../components/ProductsList'
 import { GiSettingsKnobs } from 'react-icons/gi'
 
-export default function Productos({ products }) {
+export default function Productos ({ products }) {
   const router = useRouter()
   const { category } = router.query
-  
-  const filteredProducts = products.filter(product => product.category === category.charAt(0).toUpperCase() + category.slice(1))  
+
+  const filteredProducts = products.filter(product => product.category === category.charAt(0).toUpperCase() + category.slice(1))
   const [orderedProducts, setOrderedProducts] = useState([])
 
   const orderProductsByPrice = asc => {
@@ -66,12 +66,12 @@ export default function Productos({ products }) {
           </MenuList>
         </Menu>
         <ProductsList products={orderedProducts.length > 1 ? orderedProducts : filteredProducts} />
-      </Box >
+      </Box>
     </PageLayout>
   )
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths () {
   return {
     paths: [
       { params: { category: 'borcegos' } },
@@ -83,12 +83,12 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps() {
+export async function getStaticProps () {
   try {
     const products = await axios.get(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSwaMFf-UiIC3Rq0vdEDXikinhPA-jJHAGfD8sCYk5iHHdp4Y37oUAIMqZtifQ4m9l3Rn0cgBgYewZO/pub?output=csv",
+      process.env.DB_SHEETS_URL,
       {
-        responseType: "blob"
+        responseType: 'blob'
       }
     ).then(response =>
       new Promise((resolve, reject) => {

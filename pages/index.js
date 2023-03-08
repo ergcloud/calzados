@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 import { Box, Flex, Text, Icon, useMediaQuery, Grid, GridItem } from '@chakra-ui/react'
-import axios from "axios"
-import Papa from "papaparse"
+import axios from 'axios'
+import Papa from 'papaparse'
 import { Pagination, Navigation, Autoplay, Lazy } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -13,16 +13,16 @@ import 'swiper/css/autoplay'
 import 'swiper/css/lazy'
 // import '../swiper-styles/styles.css'
 
-import PageLayout from "../components/PageLayout"
-import CardProductoDestacado from "../components/CardProductoDestacado"
-import CardProductoCatalago from "../components/CardProductoCatalogo"
-import InfoCard from "../components/InfoCard"
+import PageLayout from '../components/PageLayout'
+import CardProductoDestacado from '../components/CardProductoDestacado'
+import CardProductoCatalago from '../components/CardProductoCatalogo'
+import InfoCard from '../components/InfoCard'
 
 import { BsCreditCard2Front, BsChevronDown, BsChevronUp } from 'react-icons/bs'
 import { GrUpdate } from 'react-icons/gr'
 import { MdDeliveryDining } from 'react-icons/md'
 
-export default function Home({ products }) {
+export default function Home ({ products }) {
   const info = [
     {
       icon: BsCreditCard2Front,
@@ -89,16 +89,16 @@ export default function Home({ products }) {
         {
           !isTabletWidth
             ? <Swiper
-              modules={[Pagination, Autoplay, Lazy]}
-              spaceBetween={10}
-              slidesPerView={3}
-              slidesPerGroup={3}
-              speed={1500}
-              loop={true}
-              autoplay={{ delay: 5000, disableOnInteraction: false }}
-              lazy={{ loadPrevNextAmount: 3 }}
-              pagination={{ clickable: true }}
-            >
+                modules={[Pagination, Autoplay, Lazy]}
+                spaceBetween={10}
+                slidesPerView={3}
+                slidesPerGroup={3}
+                speed={1500}
+                loop
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                lazy={{ loadPrevNextAmount: 3 }}
+                pagination={{ clickable: true }}
+              >
               {
                 products.slice(0, 9).map(product => (
                   <SwiperSlide key={product.name}>
@@ -119,7 +119,7 @@ export default function Home({ products }) {
                     .slice(0, isActive ? 9 : 3)
                     .map(product => (
                       <GridItem key={product.name} h='auto'>
-                        <CardProductoDestacado {...product}/>
+                        <CardProductoDestacado {...product} />
                       </GridItem>
                     ))
                 }
@@ -176,14 +176,14 @@ export default function Home({ products }) {
                   <InfoCard key={title} icon={icon} title={title} description={description} />
                 ))
               }
-            </Flex>
+              </Flex>
             : <Swiper
-              modules={[Navigation]}
-              slidesPerView={1}
-              speed={500}
-              loop={true}
-              navigation
-            >
+                modules={[Navigation]}
+                slidesPerView={1}
+                speed={500}
+                loop
+                navigation
+              >
               {
                 info.map(({ icon, title, description }) => (
                   <SwiperSlide key={title}>
@@ -192,18 +192,18 @@ export default function Home({ products }) {
                 ))
               }
             </Swiper>
-        } 
+        }
       </Box>
     </PageLayout>
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps () {
   try {
     const products = await axios.get(
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSwaMFf-UiIC3Rq0vdEDXikinhPA-jJHAGfD8sCYk5iHHdp4Y37oUAIMqZtifQ4m9l3Rn0cgBgYewZO/pub?output=csv",
+      process.env.DB_SHEETS_URL,
       {
-        responseType: "blob"
+        responseType: 'blob'
       }
     ).then(response =>
       new Promise((resolve, reject) => {

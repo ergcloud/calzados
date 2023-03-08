@@ -1,27 +1,41 @@
-import { useContext, createContext, useState } from 'react'
-// import { useLocalStorage } from '../hooks/useLocalStorage'
-const CartContext = createContext()
+import { useContext, createContext, useState, useEffect } from 'react'
 
+const CartContext = createContext()
 export const useCartContext = () => useContext(CartContext)
 
 export const CartProvider = ({ children }) => {
-  const [productsInCart, setProductsInCart] = useState([])
-  // useLocalStorage('shopping-cart', [])
-  const [size, setSize] = useState(35)
+  const [productsInCart, setProductsInCart] = useState()
+
+  useEffect(() => {
+    setProductsInCart(JSON.parse(window.localStorage.getItem('shopping-cart')) || [])
+  }, [])
+
+  const [size, setSize] = useState('35')
   const [amount, setAmount] = useState(1)
   const [productName, setProductName] = useState('')
 
-  const totalAmountInCart = productsInCart.reduce((amount, product) => amount + product.amount, 0)
+  const totalAmountInCart = productsInCart?.reduce((amount, product) => amount + product.amount, 0)
 
   const addProductToCart = product => {
     const itemInCart = productsInCart.find(item => item.name === product.name)
 
     if (!itemInCart) {
-      if (product.amount > 1) {
-        setProductsInCart([...productsInCart, { ...product, price: product.price * product.amount }])
-      } else {
-        setProductsInCart([...productsInCart, product])
-      }
+      setProductsInCart(prevProducts => {
+        if (product.amount > 1) {
+          product.price = product.price * product.amount
+        }
+
+        const newProducts = [...prevProducts, product]
+        window.localStorage.setItem('shopping-cart', JSON.stringify(newProducts))
+
+        return newProducts
+      })
+
+      // if (product.amount > 1) {
+      //   setProductsInCart([...productsInCart, { ...product, price: product.price * product.amount }])
+      // } else {
+      //   setProductsInCart([...productsInCart, product])
+      // }
     }
   }
 
@@ -51,4 +65,3 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   )
 }
-

@@ -30,35 +30,38 @@ const CartDrawer = () => {
     removeProductFromCart
   } = useCartContext()
 
-  const whatsappMessage = productsInCart
-    .reduce((message, product) => message.concat(`* ${product.name} talle ${product.size} x${product.amount} - ${parseCurrency(product.price)}\n`), '')
-    .concat(`\nTotal: ${parseCurrency(productsInCart.reduce((total, product) => total + product.price, 0))}`)
+  const totalPrice = productsInCart?.reduce((total, cartItem) => total + (cartItem.price * cartItem.amount), 0)
+
+  const whatsappMessage = 
+    productsInCart?
+      .reduce((message, product) => message.concat(`* ${product.name} talle ${product.size} x${product.amount} - ${parseCurrency(product.price)}\n`), '')
+      .concat(`\nTotal: ${parseCurrency(totalPrice)}`)
 
   return (
     <>
-      {
-        totalAmountInCart > 0 &&
-        <Flex
-          as='button'
-          onClick={onOpen}
-          gap={1}
-          alignItems='center'
-        >
-          <Icon as={BiShoppingBag} w={6} h={6} color='brand.400' />
-          <Flex
-            w={5}
-            borderRadius='50%'
-            justifyContent='center'
-            alignItems='center'
-            fontSize='xs'
-            fontWeight={500}
-            bg='pink'
-            color='brand.400'
-          >
-            {totalAmountInCart}
-          </Flex>
-        </Flex>
-      }
+      <Flex
+        as='button'
+        onClick={onOpen}
+        gap={1}
+        alignItems='center'
+      >
+        <Icon as={BiShoppingBag} w={6} h={6} color='brand.400' />
+        {
+            totalAmountInCart > 0 &&
+              <Flex
+                w={5}
+                borderRadius='50%'
+                justifyContent='center'
+                alignItems='center'
+                fontSize='xs'
+                fontWeight={500}
+                bg='pink'
+                color='brand.400'
+              >
+                {totalAmountInCart}
+              </Flex>
+          }
+      </Flex>
       <Drawer
         isOpen={isOpen}
         placement='right'
@@ -76,7 +79,7 @@ const CartDrawer = () => {
                   ? productsInCart.map(product => (
                     <ItemCarrito key={product.name} product={product} removeProduct={removeProductFromCart} />
                   ))
-                  : <Text textAlign='center'>Agrega productos...</Text>
+                  : <Text textAlign='center'>No tienes ningún producto en el carrito</Text>
               }
             </Stack>
             <Text
@@ -88,35 +91,33 @@ const CartDrawer = () => {
             >
               {
                 totalAmountInCart > 0 &&
-                `Precio total: ${parseCurrency(
-                  productsInCart.reduce((total, cartItem) => total + cartItem.price, 0)
-                )}`
+                `Precio total: ${parseCurrency(totalPrice)}`
               }
             </Text>
             {
               totalAmountInCart > 0 &&
-              <a
-                target='_blank'
-                rel='noreferrer'
-                href={`https://wa.me/5491168766677?text=${encodeURIComponent(whatsappMessage)}`}
-              >
-                <Text
-                  w='100%'
-                  mt={2}
-                  mb={4}
-                  py={1}
-                  borderRadius={3}
-                  bg='brand.400'
-                  color='#FFF'
-                  textAlign='center'
-                  fontWeight={500}
-                  _hover={{ bg: '#792D30' }}
-                  _active={{ bg: 'brand.400' }}
-                  transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+                <a
+                  target='_blank'
+                  rel='noreferrer'
+                  href={`https://wa.me/5491168766677?text=${encodeURIComponent(whatsappMessage)}`}
                 >
-                  Completar el pedido
-                </Text>
-              </a>
+                  <Text
+                    w='100%'
+                    mt={2}
+                    mb={4}
+                    py={1}
+                    borderRadius={3}
+                    bg='brand.400'
+                    color='#FFF'
+                    textAlign='center'
+                    fontWeight={500}
+                    _hover={{ bg: '#792D30' }}
+                    _active={{ bg: 'brand.400' }}
+                    transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+                  >
+                    Completar el pedido
+                  </Text>
+                </a>
             }
           </DrawerBody>
         </DrawerContent>

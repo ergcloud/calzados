@@ -12,7 +12,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 
-export default function ProductsList({ products }) {
+export default function ProductsList ({ products }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [productToShow, setProductToShow] = useState(null)
 
@@ -37,7 +37,7 @@ export default function ProductsList({ products }) {
                 src={product.imageUrl}
                 alt={product.name}
                 w='100%'
-                h={{ sm: '180px', sm2: '240px', md: '270px'}}
+                h={{ sm: '180px', sm2: '240px', md: '270px' }}
                 objectFit='cover'
                 borderTopRadius={3}
               />

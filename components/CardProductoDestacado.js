@@ -3,7 +3,7 @@ import { Flex, Button, Image, Text, useMediaQuery, useDisclosure } from '@chakra
 import { parseCurrency } from '../utilities/parseCurrency'
 import CartModal from './CartModal'
 
-export default function CardProductoDestacado(product) {
+export default function CardProductoDestacado (product) {
   const { name, category, price, imageUrl } = product
 
   const [productToShow, setProductToShow] = useState(null)
@@ -39,11 +39,8 @@ export default function CardProductoDestacado(product) {
           letterSpacing={0.5}
           color='brand.400'
         >
-          {
-            biggerThan500px
-              ? `${category} ${name}`
-              : `${category}\n${name}`
-          }
+          <span style={{ display: 'block' }}>{category}</span>
+          {name}
         </Text>
         <Text
           mt={1}

@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 function CataloguedProductCard ({ name, description, imageUrl }) {
   return (
-    <Flex direction='column' w='260px'>
+    <Flex direction='column' w='260px' h='400px'>
       <Link href={`/producto/${name.toLowerCase()}`}>
         <a>
           <Image

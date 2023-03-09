@@ -9,22 +9,18 @@ function CartItem ({ product, removeProduct }) {
         <Image
           src={product.imageUrl}
           alt={product.name}
-          w='90px'
-          h='100px'
+          w={{ sm: '90px', sm2: '100px' }}
+          h={{ sm: '100px', sm2: '110px' }}
           objectFit='cover'
           borderRadius={3}
           boxShadow='base'
         />
         <Box>
-          <Text
-            lineHeight={1.3}
-            fontWeight={500}
-            color='brand.400'
-          >
+          <Text fontWeight={500} color='brand.400'>
             {product.name}
           </Text>
           <Text
-            fontSize='sm'
+            fontSize={{ sm: 'sm', sm2: 'md' }}
             fontWeight={600}
             color='brand.400'
           >
@@ -34,13 +30,13 @@ function CartItem ({ product, removeProduct }) {
             fontSize='sm'
             color='brand.400'
           >
-            Talle: {product.size}
+            Talle: <span style={{ fontWeight: 500 }}>{product.size}</span>
           </Text>
           <Text
             fontSize='sm'
             color='brand.400'
           >
-            Cantidad: {product.amount}
+            Cantidad: <span style={{ fontWeight: 500 }}>{product.amount}</span>
           </Text>
         </Box>
       </Flex>

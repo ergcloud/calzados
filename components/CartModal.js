@@ -93,13 +93,13 @@ function CartModal ({ product, isOpen, onClose }) {
           </Flex>
           {
             product &&
-              <>
-                <Flex justifyContent='center' alignItems='center' gap={3}>
+              <Flex direction='column' gap={4}>
+                <Flex justifyContent='center' alignItems='center' gap={3} h='210px'>
                   <Image
                     lazy='true'
                     src={imageUrl}
                     alt={name}
-                    h='200px'
+                    h='210px'
                     maxW='150px'
                     objectFit='cover'
                     borderRadius={3}
@@ -117,7 +117,7 @@ function CartModal ({ product, isOpen, onClose }) {
                       {parseCurrency(price)}
                     </Text>
                     <Text
-                      fontSize='xs'
+                      fontSize={{ sm: 'xs', sm2: 'sm' }}
                       fontStyle='italic'
                       color='brand.300'
                     >
@@ -125,7 +125,7 @@ function CartModal ({ product, isOpen, onClose }) {
                     </Text>
                     <Text
                       mt={3}
-                      fontSize='xs'
+                      fontSize={{ sm: 'xs', sm2: 'sm' }}
                       fontWeight={500}
                       fontStyle='italic'
                       color='brand.300'
@@ -140,13 +140,13 @@ function CartModal ({ product, isOpen, onClose }) {
                           key={size}
                           as='button'
                           onClick={event => handleSize(event, size)}
-                          w={5}
-                          h={5}
+                          w={{ sm: 5, sm2: 6 }}
+                          h={{ sm: 5, sm2: 6 }}
                           border='1px solid #574241'
                           borderRadius='50%'
                           justifyContent='center'
                           alignItems='center'
-                          fontSize='xs'
+                          fontSize={{ sm: 'xs', sm2: 'sm' }}
                           fontWeight={500}
                           bg={`${size === '35' ? 'brand.400' : '#FFF'}`}
                           color={`${size === '35' ? 'brand.100' : 'brand.300'}`}
@@ -159,7 +159,7 @@ function CartModal ({ product, isOpen, onClose }) {
                     </Flex>
                     <Text
                       mt={2}
-                      fontSize='xs'
+                      fontSize={{ sm: 'xs', sm2: 'sm' }}
                       fontWeight={500}
                       fontStyle='italic'
                       color='brand.300'
@@ -171,6 +171,7 @@ function CartModal ({ product, isOpen, onClose }) {
                         mt={1}
                         border='1px solid #574241'
                         fontSize='sm'
+                        fontWeight={500}
                         color='brand.300'
                       >
                         <Flex alignItems='center' justifyContent='space-between' px={2}>
@@ -185,6 +186,7 @@ function CartModal ({ product, isOpen, onClose }) {
                             key={item}
                             onClick={() => setAmount(item)}
                             fontSize='sm'
+                            fontWeight={500}
                             color='brand.300'
                           >
                             {item}
@@ -195,44 +197,26 @@ function CartModal ({ product, isOpen, onClose }) {
                     </Menu>
                   </Flex>
                 </Flex>
-                <Box mt={2}>
-                  <Text
-                    mt={1}
-                    fontSize='sm'
-                    fontWeight={500}
-                    color='brand.300'
-                  >
-                    Descripción
-                  </Text>
-                  <Text
-                    fontSize='xs'
-                    color='brand.300'
-                  >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias debitis laboriosam architecto ratione sit odit.
-                  </Text>
-                  <Flex w='100%' h='40px' mt={3} justifyContent='space-between' alignItems='center'>
-                    <Box
-                      as='button'
-                      onClick={handleAddToCart}
-                      w='100%'
-                      py={2}
-                      px={2.5}
-                      bg='brand.400'
-                      color='#FFF'
-                      fontSize='md'
-                      fontWeight={500}
-                      letterSpacing={2}
-                      _hover={{ bg: '#792D30' }}
-                      _active={{
-                        bg: 'brand.400'
-                      }}
-                      transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
-                    >
-                      Agregar al carrito
-                    </Box>
-                  </Flex>
+                <Box
+                  as='button'
+                  onClick={handleAddToCart}
+                  w='100%'
+                  py={2}
+                  px={2.5}
+                  bg='brand.400'
+                  color='#FFF'
+                  fontSize='md'
+                  fontWeight={500}
+                  letterSpacing={2}
+                  _hover={{ bg: '#792D30' }}
+                  _active={{
+                    bg: 'brand.400'
+                  }}
+                  transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+                >
+                  Agregar al carrito
                 </Box>
-              </>
+              </Flex>
           }
         </ModalBody>
       </ModalContent>

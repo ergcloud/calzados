@@ -45,7 +45,7 @@ export default function Productos ({ products }) {
       >
         <Menu closeOnSelect={false}>
           <MenuButton
-            ml={{ sm: 3, sm2: 5, lg: '90px', xl: '210px' }}
+            ml={3}
             fontWeight={500}
             fontSize={{ sm: 'sm', sm2: 'md', md: 'lg', lg: 'xl' }}
             textTransform='uppercase'

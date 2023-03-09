@@ -16,7 +16,6 @@ function FeaturedProductCard
 
   const [productToShow, setProductToShow] = useState(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
-  // const [biggerThan500px] = useMediaQuery('(min-width: 500px)')
 
   const handleClick = () => {
     setProductToShow(product)

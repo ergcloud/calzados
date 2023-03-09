@@ -11,7 +11,6 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import 'swiper/css/autoplay'
 import 'swiper/css/lazy'
-// import '../swiper-styles/styles.css'
 
 import PageLayout from '../components/PageLayout'
 import FeaturedProductCard from '../components/FeaturedProductCard'
@@ -41,25 +40,25 @@ export default function Home ({ products }) {
     }
   ]
 
-  const productosCatalogo = [
+  const catalogueProducts = [
     {
       name: 'Borcegos',
-      description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+      description: 'Combinación perfecta de estilo y comodidad para cualquier ocasión',
       imageUrl: products[0].imageUrl
     },
     {
       name: 'Botas',
-      description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+      description: 'La pieza clave para lucir siempre elegante y a la moda',
       imageUrl: products[1].imageUrl
     },
     {
       name: 'Botinetas',
-      description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+      description: 'Lleva tu estilo al siguiente nivel con diseños exclusivos',
       imageUrl: products[2].imageUrl
     },
     {
       name: 'Texanas',
-      description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+      description: 'Perfectas para cualquier temporada y ocasión',
       imageUrl: products[3].imageUrl
     }
   ]
@@ -76,7 +75,7 @@ export default function Home ({ products }) {
     <PageLayout>
       <Box align='center' mt={{ sm: 20, sm2: '100px', md: '140px' }} mb={3} mx={{ sm: 3, sm2: 5 }}>
         <Text
-          mb={3}
+          mb={{ sm: 3, lg: 6 }}
           textTransform='uppercase'
           fontSize={{ sm: 'sm', sm2: 'md', md: 'lg' }}
           fontWeight={500}
@@ -141,7 +140,7 @@ export default function Home ({ products }) {
       </Box>
       <Box align='center'>
         <Text
-          mb={3}
+          mb={{ sm: 3, lg: 6 }}
           textTransform='uppercase'
           fontSize={{ sm: 'sm', sm2: 'md', md: 'lg' }}
           fontWeight={500}
@@ -160,7 +159,7 @@ export default function Home ({ products }) {
           alignItems='center'
         >
           {
-            productosCatalogo.map(({ name, description, imageUrl }) => (
+            catalogueProducts.map(({ name, description, imageUrl }) => (
               <CataloguedProductCard
                 key={name}
                 name={name}
@@ -171,7 +170,7 @@ export default function Home ({ products }) {
           }
         </Flex>
       </Box>
-      <Box my={8}>
+      <Box my={{ sm: 8, md: 16, lg: 24 }}>
         {
           isDesktopWidth
             ? (

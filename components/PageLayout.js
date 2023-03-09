@@ -8,7 +8,6 @@ function PageLayout ({ children, title = 'Picota Calzados' }) {
       <Head>
         <title>{title}</title>
         <meta name='description' content='Picota Calzados - Tienda de calzado femenino' />
-        {/* <link rel="icon" href="" /> */}
       </Head>
       <Header />
       <main>

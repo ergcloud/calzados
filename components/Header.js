@@ -53,7 +53,6 @@ function Header () {
               <a>
                 <Heading
                   as='h1'
-                  mb={2}
                   fontSize={{ sm: 'xl', sm2: '2xl' }}
                   fontFamily='Cardo'
                   textTransform='uppercase'

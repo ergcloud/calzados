@@ -46,22 +46,22 @@ function CartDrawer () {
         gap={1}
         alignItems='center'
       >
-        <Icon as={BiShoppingBag} w={6} h={6} color='brand.400' />
+        <Icon as={BiShoppingBag} w={{ sm: 6, sm2: 7 }} h={{ sm: 6, sm2: 7 }} color='brand.400' />
         {
-            totalAmountInCart > 0 &&
-              <Flex
-                w={5}
-                borderRadius='50%'
-                justifyContent='center'
-                alignItems='center'
-                fontSize='xs'
-                fontWeight={500}
-                bg='pink'
-                color='brand.400'
-              >
-                {totalAmountInCart}
-              </Flex>
-          }
+          totalAmountInCart > 0 &&
+            <Flex
+              w={5}
+              borderRadius='50%'
+              justifyContent='center'
+              alignItems='center'
+              fontSize={{ sm: 'xs', sm2: 'sm' }}
+              fontWeight={500}
+              bg='pink'
+              color='brand.400'
+            >
+              {totalAmountInCart}
+            </Flex>
+        }
       </Flex>
       <Drawer
         isOpen={isOpen}
@@ -87,43 +87,41 @@ function CartDrawer () {
                   : <Text textAlign='center'>No tienes ningún producto en el carrito</Text>
               }
             </Stack>
-            <Text
-              mt={5}
-              textAlign='end'
-              fontSize='sm'
-              fontWeight={500}
-              color='brand.400'
-            >
-              {
-                totalAmountInCart > 0 &&
-                `Precio total: ${parseCurrency(totalPrice)}`
-              }
-            </Text>
             {
               totalAmountInCart > 0 &&
-                <a
-                  target='_blank'
-                  rel='noreferrer'
-                  href={`https://wa.me/5491168766677?text=${encodeURIComponent(whatsappMessage)}`}
-                >
+                <>
                   <Text
-                    w='100%'
-                    mt={2}
-                    mb={4}
-                    py={1}
-                    borderRadius={3}
-                    bg='brand.400'
-                    color='#FFF'
-                    textAlign='center'
+                    mt={5}
+                    textAlign='end'
+                    fontSize={{ sm: 'sm', sm2: 'md' }}
                     fontWeight={500}
-                    _hover={{ bg: '#792D30' }}
-                    _active={{ bg: 'brand.400' }}
-                    transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+                    color='brand.400'
                   >
-                    Completar el pedido
+                    Precio total: <span style={{ fontWeight: 600 }}>{parseCurrency(totalPrice)}</span>
                   </Text>
-                </a>
-            }
+                  <a
+                    target='_blank'
+                    rel='noreferrer'
+                    href={`https://wa.me/5491168766677?text=${encodeURIComponent(whatsappMessage)}`}
+                  >
+                    <Text
+                      w='100%'
+                      mt={2}
+                      mb={4}
+                      py={1}
+                      bg='brand.400'
+                      color='#FFF'
+                      textAlign='center'
+                      fontWeight={500}
+                      _hover={{ bg: '#792D30' }}
+                      _active={{ bg: 'brand.400' }}
+                      transition='all 0.2s cubic-bezier(.08,.52,.52,1)'
+                    >
+                      Completar el pedido
+                    </Text>
+                  </a>
+                </>
+              }
           </DrawerBody>
         </DrawerContent>
       </Drawer>
